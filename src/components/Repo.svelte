@@ -26,7 +26,7 @@
             `https://api.github.com/repos/dewaeq/${repo.name}/commits`,
             {
                 headers: {
-                    Authorization: import.meta.env.AUTH_TOKEN,
+                    Authorization: import.meta.env.VITE_AUTH_TOKEN,
                 },
             }
         );
@@ -102,7 +102,7 @@
         border-radius: 8px;
         border: 1px solid transparent;
         padding: 0 1rem;
-        margin: 2rem;
+        margin: 1rem;
         background-color: #f9f9f9;
     }
 
@@ -170,7 +170,7 @@
     }
     @media (orientation: portrait) {
         .card {
-            width: 80%;
+            width: 95%;
         }
     }
 </style>

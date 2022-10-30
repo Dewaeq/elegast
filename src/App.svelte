@@ -5,7 +5,7 @@
     const getRepos = async () => {
         const res = await fetch("https://api.github.com/users/dewaeq/repos", {
             headers: {
-                Authorization: import.meta.env.AUTH_TOKEN,
+                Authorization: import.meta.env.VITE_AUTH_TOKEN,
             },
         });
         const data = await res.json();
