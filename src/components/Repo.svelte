@@ -26,7 +26,7 @@
             `https://api.github.com/repos/dewaeq/${repo.name}/commits`,
             {
                 headers: {
-                    Authorization: import.meta.env.VITE_AUTH_TOKEN,
+                    Authorization: "token " + import.meta.env.VITE_AUTH_TOKEN,
                 },
             }
         );
