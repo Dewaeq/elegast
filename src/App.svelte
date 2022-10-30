@@ -3,7 +3,11 @@
     import { RepoModel } from "./models/RepoModel";
 
     const getRepos = async () => {
-        const res = await fetch("https://api.github.com/users/dewaeq/repos");
+        const res = await fetch("https://api.github.com/users/dewaeq/repos", {
+            headers: {
+                Authorization: import.meta.env.AUTH_TOKEN,
+            },
+        });
         const data = await res.json();
 
         if (!res.ok) {

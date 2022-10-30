@@ -4,7 +4,9 @@
 
     export let repo: RepoModel;
 
-    const updatedDate = repo.updated.toLocaleDateString(new Intl.Locale("nl-BE"));
+    const updatedDate = repo.updated.toLocaleDateString(
+        new Intl.Locale("nl-BE")
+    );
 
     const getReadme = async () => {
         const res = await fetch(
@@ -21,7 +23,12 @@
 
     const getCommits = async () => {
         const res = await fetch(
-            `https://api.github.com/repos/dewaeq/${repo.name}/commits`
+            `https://api.github.com/repos/dewaeq/${repo.name}/commits`,
+            {
+                headers: {
+                    Authorization: import.meta.env.AUTH_TOKEN,
+                },
+            }
         );
         const data = await res.json();
 
