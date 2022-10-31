@@ -141,7 +141,11 @@
     .details {
         display: flex;
         place-items: center;
-        justify-content: space-between;
+    }
+
+    .details > p {
+        white-space: nowrap;
+        width: min-content;
     }
 
     .commits {
@@ -161,6 +165,7 @@
 
     .commit-icon {
         height: 1em;
+        width: 2em;
     }
 
     @media (orientation: landscape) {
@@ -171,6 +176,10 @@
     @media (orientation: portrait) {
         .card {
             width: 95%;
+        }
+
+        .details > p {
+            white-space: normal;
         }
     }
 </style>
