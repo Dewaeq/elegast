@@ -10,7 +10,7 @@
         <h1>History</h1>
 
         <nav>
-            <Link to="home">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="about">About</Link>
             <Link to="privacy">Privacy</Link>
         </nav>
