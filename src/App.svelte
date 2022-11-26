@@ -1,47 +1,29 @@
 <script lang="ts">
-    import Repo from "./components/Repo.svelte";
-    import { RepoModel } from "./models/RepoModel";
-
-    const getRepos = async () => {
-        const res = await fetch("https://api.github.com/users/dewaeq/repos", {
-            headers: {
-                Authorization: "token " + import.meta.env.VITE_AUTH_TOKEN,
-            },
-        });
-        const data = await res.json();
-
-        if (!res.ok) {
-            throw Error(data);
-        }
-
-        const repos = data.map((repo) => RepoModel.fromJson(repo));
-
-        repos.sort((a, b) => b.updated.getTime() - a.updated.getTime());
-        return repos;
-    };
-
-    const promise = getRepos();
+    import { Router, Link, Route } from "svelte-navigator";
+    import About from "./routes/About.svelte";
+    import Home from "./routes/Home.svelte";
+    import Privacy from "./routes/Privacy.svelte";
 </script>
 
-<header>
-    <h1>Projects:</h1>
-</header>
+<Router>
+    <header>
+        <h1>History</h1>
 
-<main>
-    {#await promise}
-        <h1>Loading</h1>
-    {:then data}
-        {#each data as repo}
-            <Repo {repo} />
-        {/each}
-    {:catch error}
-        <p style="color: red">{error.message}</p>
-    {/await}
-</main>
+        <nav>
+            <Link to="home">Home</Link>
+            <Link to="about">About</Link>
+            <Link to="privacy">Privacy</Link>
+        </nav>
+    </header>
 
-<footer>
-    <p>Dewaeq 2022</p>
-</footer>
+    <main>
+        <Route path="/" component={Home} />
+        <Route path="privacy" component={Privacy} />
+        <Route path="about" component={About} />
 
-<style>
-</style>
+        <Route>
+            <h3>Default</h3>
+            <p>No Route could be matched.</p>
+        </Route>
+    </main>
+</Router>

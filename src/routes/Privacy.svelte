@@ -1,0 +1,1 @@
+<p>we do not collect any data</p>
