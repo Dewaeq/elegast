@@ -1,5 +1,7 @@
+<h1>Short version</h1>
 <p>we do not collect any data</p>
-<h1>Privacy Policy</h1>
+
+<h1>Long version</h1>
 <p>Last updated: November 26, 2022</p>
 <p>
     This Privacy Policy describes Our policies and procedures on the collection,
