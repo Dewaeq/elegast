@@ -7,8 +7,6 @@
 
 <Router>
     <header>
-        <h1>History</h1>
-
         <nav>
             <Link to="/">Home</Link>
             <Link to="about">About</Link>

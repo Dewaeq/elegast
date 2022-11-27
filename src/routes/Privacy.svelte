@@ -12,7 +12,7 @@
     with this Privacy Policy. This Privacy Policy has been created with the help
     of the <a
         href="https://www.freeprivacypolicy.com/free-privacy-policy-generator/"
-        target="_blank">Free Privacy Policy Generator</a
+        target="_blank" rel="noreferrer">Free Privacy Policy Generator</a
     >.
 </p>
 <h1>Interpretation and Definitions</h1>
