@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/*"
-  to = "/__app.html"
+  to = "/index.html"
   status = 200
 
 [build]
