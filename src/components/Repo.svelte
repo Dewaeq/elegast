@@ -10,7 +10,7 @@
 
     const getReadme = async () => {
         const res = await fetch(
-            `https://raw.githubusercontent.com/dewaeq/${repo.name}/master/README.md`
+            `https://raw.githubusercontent.com/dewaeq/${repo.name}/${repo.defaultBranch}/README.md`
         );
         const data = await res.text();
 
@@ -23,20 +23,29 @@
 
     const getCommits = async () => {
         const res = await fetch(
-            `https://api.github.com/repos/dewaeq/${repo.name}/commits`,
+            `https://api.github.com/repos/dewaeq/${repo.name}/commits?sha=${repo.defaultBranch}&per_page=1&page=1`,
             {
                 headers: {
                     Authorization: "token " + import.meta.env.VITE_AUTH_TOKEN,
                 },
             }
         );
-        const data = await res.json();
 
         if (!res.ok) {
-            throw new Error(data);
+            throw new Error(await res.text());
         }
 
-        return data;
+        const header = res.headers.get("link");
+        const start = header.lastIndexOf("&page=");
+        const end = header.lastIndexOf(">");
+        const value = header.substring(start + 6, end);
+
+        try {
+            return parseInt(value);
+        } catch (e) {
+            console.error(e);
+            return 0;
+        }
     };
 
     let readmeContainer: HTMLDivElement;
@@ -64,7 +73,7 @@
             <div class="commits">
                 {#await commitsPromise then commits}
                     <img class="commit-icon" src="commit.svg" alt="" />
-                    <p>{commits.length}</p>
+                    <p>{commits}</p>
                 {/await}
             </div>
 
