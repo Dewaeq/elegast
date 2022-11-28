@@ -23,7 +23,7 @@
 
     const getCommits = async () => {
         const res = await fetch(
-            `https://api.github.com/repos/dewaeq/${repo.name}/commits`,
+            `https://api.github.com/repos/dewaeq/${repo.name}/stats/commit_activity`,
             {
                 headers: {
                     Authorization: "token " + import.meta.env.VITE_AUTH_TOKEN,
@@ -36,7 +36,16 @@
             throw new Error(data);
         }
 
-        return data;
+        let commits = 0;
+        try {
+            for (const entry of data) {
+                commits += entry.total;
+            }
+        } catch (e) {
+            console.error(e);
+        }
+
+        return commits;
     };
 
     let readmeContainer: HTMLDivElement;
@@ -64,7 +73,7 @@
             <div class="commits">
                 {#await commitsPromise then commits}
                     <img class="commit-icon" src="commit.svg" alt="" />
-                    <p>{commits.length}</p>
+                    <p>{commits}</p>
                 {/await}
             </div>
 
